@@ -1,0 +1,64 @@
+[versions]
+agp = "8.5.2"
+kotlin = "2.0.0"
+compose-bom = "2024.06.00"
+hilt = "2.51"
+hilt-nav = "1.2.0"
+navigation = "2.7.7"
+lifecycle = "2.8.4"
+activity-compose = "1.9.2"
+coroutines = "1.8.1"
+timber = "5.0.1"
+webrtc = "1.0.33873"
+nanohttpd = "2.3.1"
+zxing = "3.5.3"
+junit = "4.13.2"
+mockk = "1.13.12"
+androidx-test-ext = "1.1.5"
+espresso = "3.5.1"
+compose-ui-test = "1.6.8"
+detekt = "1.23.6"
+ktlint = "12.1.1"
+
+[plugins]
+android-application = { id = "com.android.application", version = "${agp}" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "${kotlin}" }
+hilt = { id = "com.google.dagger.hilt.android", version = "${hilt}" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "${detekt}" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "${ktlint}" }
+
+[libraries]
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-foundation = { module = "androidx.compose.foundation:foundation" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
+
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-nav" }
+
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+
+webrtc = { module = "org.webrtc:google-webrtc", version.ref = "webrtc" }
+
+nanohttpd = { module = "org.nanohttpd:nanohttpd", version.ref = "nanohttpd" }
+nanohttpd-ws = { module = "org.nanohttpd:nanohttpd-websocket", version.ref = "nanohttpd" }
+
+zxing-core = { module = "com.google.zxing:core", version.ref = "zxing" }
+
+junit = { module = "junit:junit", version.ref = "junit" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+
+androidx-test-ext = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose-ui-test" }
+compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose-ui-test" }
