@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>LuLan Viewer</title>
+  <style>
+    body{margin:0;font-family:system-ui,Arial;background:#0b1220;color:#fff}
+    header{padding:12px 16px;background:#111a2b;border-bottom:1px solid #1f2937}
+    main{display:flex;flex-direction:column;gap:12px;padding:12px}
+    #stats{font:12px/1.4 monospace;color:#a7b7d9}
+    video{width:100%;max-height:92vh;background:#000}
+    input,button{font-size:16px;padding:8px;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#fff}
+  </style>
+</head>
+<body>
+  <header><strong>LuLan Viewer</strong> — LAN-only WebRTC</header>
+  <main>
+    <div>
+      <label>Session PIN: <input id="pin" placeholder="1234" value="0000"/></label>
+      <button id="connect">Connect</button>
+    </div>
+    <video id="v" autoplay playsinline controls muted></video>
+    <div id="stats"></div>
+  </main>
+  <script src="/viewer.js"></script>
+</body>
+</html>
