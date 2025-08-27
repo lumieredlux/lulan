@@ -1,4 +1,4 @@
-name: Android CI
+name: Android CI (mobile-friendly, no wrapper required)
 
 on:
   push:
@@ -18,39 +18,25 @@ jobs:
       - name: Setup JDK 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Cache Gradle
-        uses: gradle/actions/setup-gradle@v3
+          distribution: temurin
+          java-version: "17"
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Static analysis (ktlint + detekt)
-        run: ./gradlew ktlintCheck detekt --stacktrace
-
-      - name: Unit & UI tests
-        run: ./gradlew test
-
-      - name: Assemble debug APK
-        run: ./gradlew assembleDebug
+      # ⬇️ Run Gradle WITHOUT gradlew (installs Gradle 8.7 for this job)
+      - name: Run Gradle (ktlint + detekt + tests + assemble)
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 8.7
+          arguments: |
+            ktlintCheck detekt test assembleDebug
+          # Optional: if your detekt config lives at config/detekt/detekt.yml, uncomment next line
+          # build-root-directory: .
+          # gradle-args: -Pdetekt.config=config/detekt/detekt.yml
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: lulan-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
-
-      # --- For release signing later:
-      # - name: Set up keystore
-      #   run: |
-      #     echo "${{ secrets.SIGNING_KEYSTORE_BASE64 }}" | base64 -d > keystore.jks
-      # - name: Assemble release
-      #   run: ./gradlew assembleRelease -Pandroid.injected.signing.store.file=keystore.jks \
-      #        -Pandroid.injected.signing.store.password=${{ secrets.SIGNING_STORE_PASSWORD }} \
-      #        -Pandroid.injected.signing.key.alias=${{ secrets.SIGNING_KEY_ALIAS }} \
-      #        -Pandroid.injected.signing.key.password=${{ secrets.SIGNING_KEY_PASSWORD }}
